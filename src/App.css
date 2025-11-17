@@ -1,38 +1,425 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-root {
   min-height: 100vh;
+  padding: 32px;
+  background: #f4f6f8;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  margin-bottom: 4px;
+  font-size: 24px;
+}
+
+.app-header p {
+  color: #6b7280;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.task-header-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 140px 140px 1fr 40px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 140px 140px 1fr 40px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #4b6c8b;
+  background: #ffffff;
+}
+
+.icon-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: #d97757;
+}
+
+.task-actions-row {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: #4b6c8b;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: #fdf7f1;
+  color: #c56f3a;
+  border: 1px solid #d9b08c;
+}
+
+.generate-row {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.btn.wide {
+  flex: 1;
+}
+
+.app-footer {
+  margin-top: 24px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+/* results card */
+.results-card {
+  margin-top: 24px;
+}
+
+.tabs-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.tab-button {
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.tab-button-active {
+  background: #f3f4f6;
+  color: #0f172a;
+  font-weight: 600;
+  border-bottom: 2px solid #4b6c8b;
+}
+
+/* dates table */
+.dates-header-row,
+.dates-row {
+  display: grid;
+  grid-template-columns: 80px repeat(5, 1fr);
+  padding: 8px 12px;
+}
+
+.dates-header-row {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.dates-row {
+  border-top: 1px solid #f3f4f6;
+}
+
+.dates-row-critical {
+  background: #ffecec;
+}
+
+.critical-title {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.chip-critical {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #ffecec;
+  color: #b91c1c;
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+/* PERT */
+.pert-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pert-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pert-label {
+  text-align: center;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.pert-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 999px;
+  border: 2px solid #ef4444;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  text-align: center;
+  padding: 6px 0;
+}
+
+.pert-top,
+.pert-bottom {
+  padding: 2px 4px;
+}
+
+.pert-circle::before {
+  content: "";
+  position: relative;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #ef4444;
+  display: block;
+}
+
+.pert-arrow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ef4444;
+}
+
+.pert-duration {
+  font-size: 12px;
+}
+
+/* Gantt */
+/* --- RESULTATS & TABS (pour contexte) --- */
+
+.results-card {
+   margin-top: 24px;
+  }
+  
+  .tabs-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 12px;
+  }
+  
+  .tab-button {
+   padding: 10px 12px;
+   border: none;
+   background: transparent;
+   cursor: pointer;
+   font-size: 14px;
+   color: #6b7280;
+  }
+  
+  .tab-button-active {
+  background: #f3f4f6;
+   color: #0f172a;
+ font-weight: 600;
+  border-bottom: 2px solid #4b6c8b;
+  }
+  
+  /* --- DIAGRAMME DE GANTT --- */
+  
+  /* --- DIAGRAMME DE GANTT --- */
+
+.gantt-wrapper {
+  margin-top: 16px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+}
+
+/* Axe du temps (Titre + Échelle) */
+.gantt-timeline {
+  display: flex;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.gantt-timeline-label {
+  padding: 8px 0;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: right;
+  padding-right: 15px;
+  flex-shrink: 0;
+}
+
+/* Conteneur de l'échelle */
+.gantt-scale-container {
+  overflow: visible;
+  position: relative;
+  height: 40px;
+  flex-grow: 1;
+}
+
+.gantt-scale {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+/* Tick (graduation) */
+.gantt-tick {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.gantt-tick-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Alignement particulier du 0 */
+.gantt-tick:first-child .gantt-tick-label {
+  transform: translateX(-50%);
+  left: 0;
+  font-weight: 600;
+}
+
+/* Ligne de grille verticale */
+.gantt-grid-line {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 1px;
+  height: 1000px; /* assez grand pour couvrir toutes les lignes */
+  background: #e5e7eb;
+  z-index: 1;
+}
+
+/* Lignes des tâches */
+.gantt-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  border-top: 1px solid #f3f4f6;
+  padding: 12px 0;
+}
+
+.gantt-label {
+  font-size: 14px;
+  padding-right: 15px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.gantt-task-id {
+  font-weight: 600;
+}
+
+.gantt-task-info {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Zone graphique des barres */
+.gantt-bar-container {
+  position: relative;
+  height: 24px;
+  flex-grow: 1;
+  border-left: 1px solid #e5e7eb;
+  z-index: 5;
+}
+
+/* Barre de flottement (marge totale) */
+.gantt-float-bar {
+  position: absolute;
+  top: 0;
+  height: 24px;
+  border-radius: 4px;
+  background: #d0e7f9; /* bleu très clair */
+  z-index: 8;
+}
+
+/* Barre principale */
+.gantt-bar {
+  position: absolute;
+  top: 0;
+  height: 24px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 8px;
+  z-index: 10;
+  min-width: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Couleurs */
+.gantt-bar-critical {
+  background: #ef4444; /* rouge pour chemin critique */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.gantt-bar-normal {
+  background: #4b6c8b; /* bleu foncé pour tâches non critiques */
 }
+
+
+
+
+
+
+
+
+
