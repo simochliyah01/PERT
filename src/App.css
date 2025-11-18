@@ -110,13 +110,6 @@
   font-size: 14px;
 }
 
-
-
-
-
-
-
-
 /* results card */
 .results-card {
   margin-top: 24px;
@@ -124,7 +117,7 @@
 
 .tabs-header {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid #e5e7eb;
   margin-bottom: 12px;
 }
@@ -241,38 +234,6 @@
 }
 
 /* Gantt */
-/* --- RESULTATS & TABS (pour contexte) --- */
-
-.results-card {
-   margin-top: 24px;
-  }
-  
-  .tabs-header {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-bottom: 1px solid #e5e7eb;
-    margin-bottom: 12px;
-  }
-  
-  .tab-button {
-   padding: 10px 12px;
-   border: none;
-   background: transparent;
-   cursor: pointer;
-   font-size: 14px;
-   color: #6b7280;
-  }
-  
-  .tab-button-active {
-  background: #f3f4f6;
-   color: #0f172a;
- font-weight: 600;
-  border-bottom: 2px solid #4b6c8b;
-  }
-  
-  /* --- DIAGRAMME DE GANTT --- */
-  
-  /* --- DIAGRAMME DE GANTT --- */
 
 .gantt-wrapper {
   margin-top: 16px;
@@ -416,10 +377,149 @@
 }
 
 
+/* ========================= */
+/*     MEDIA QUERIES        */
+/* ========================= */
+
+/* 🟡 Tablette (≈ <= 1024px) */
+@media (max-width: 1024px) {
+  .app-root {
+    padding: 24px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .task-header-row,
+  .task-row {
+    grid-template-columns: 60px 1fr 120px 120px 1fr 32px;
+  }
+}
+
+/* 🔵 Mobile (≈ <= 768px) */
+@media (max-width: 768px) {
+  .app-root {
+    padding: 16px;
+  }
+
+  .app-header h1 {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  /* tableau des tâches: header se cache, chaque tâche en bloc vertical */
+  .task-header-row {
+    display: none;
+  }
+
+  .task-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px;
+    background: #ffffff;
+  }
+
+  .task-row > * {
+    width: 100%;
+  }
+
+  .task-actions-row {
+    flex-direction: column;
+  }
+
+  .generate-row {
+    flex-direction: column;
+  }
+
+  .btn,
+  .btn.wide {
+    width: 100%;
+    text-align: center;
+  }
+
+
+  .tabs-header {
+    grid-template-columns: 1fr;
+  }
+
+  .results-card {
+    overflow-x: auto;
+  }
+
+  .dates-header-row,
+  .dates-row {
+    min-width: 600px;
+  }
+
+
+  .pert-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .gantt-row {
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .app-root {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .app-header h1 {
+    font-size: 18px;
+  }
+
+  .tab-button {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .gantt-timeline-label {
+    font-size: 13px;
+  }
+
+  .gantt-task-info {
+    font-size: 11px;
+  }
+}
 
 
 
+.mobile-label {
+  display: none;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #4b5563;
+  font-weight: 600;
+}
 
 
+@media (max-width: 768px) {
+  .mobile-label {
+    display: block;
+  }
 
+  .task-row input,
+  .task-row select {
+    margin-bottom: 8px;
+  }
 
+  .icon-button {
+    margin-top: 8px;
+  }
+}
