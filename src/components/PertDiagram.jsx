@@ -31,7 +31,7 @@ function PertDiagram({ pertResult, displayUnit }) {
     });
   });
 
-  // Reachability: واش نقدر نوصل من fromId لـ toId عبر successeurs
+  // Reachability
   function canReach(fromId, toId, visited = new Set()) {
     if (fromId === toId) return true;
     if (visited.has(fromId)) return false;
@@ -43,14 +43,13 @@ function PertDiagram({ pertResult, displayUnit }) {
     return false;
   }
 
-  // slack pour كل tâche
+  // slack pour chaque tâche
   const slackOf = {};
   tasks.forEach((t) => {
     slackOf[t.id] = (t.LS ?? 0) - (t.ES ?? 0);
   });
 
   // ---------- 1) Construction des événements ----------
-  // on trie les tâches par EF pour نرقم الأحداث 1..N بنفس المنطق ديال cours
   const sortedByEF = [...tasks].sort((a, b) => a.EF - b.EF);
 
   const events = [];
@@ -125,12 +124,12 @@ function PertDiagram({ pertResult, displayUnit }) {
       dashed: false,
     });
 
-    // arcs fictifs (dummies) للباقي ديال prédécesseurs غير اللي ماشي redondants
+    // arcs fictifs 
     if (preds.length > 1) {
       preds.forEach((pid) => {
         if (pid === mainPred) return;
 
-        // ila pred y9dar ywasel mainPred déjà → relation redondante
+    
         if (canReach(pid, mainPred)) return;
 
         const fromEvDummy = endEventByTaskId[pid];
@@ -247,7 +246,7 @@ function PertDiagram({ pertResult, displayUnit }) {
         );
       })}
 
-      {/* ÉVÉNEMENTS (cercles b7al cours) */}
+      {/* ÉVÉNEMENTS */}
       {events.map((ev, idx) => {
         const pos = eventPos.get(ev);
         if (!pos) return null;
@@ -267,7 +266,7 @@ function PertDiagram({ pertResult, displayUnit }) {
               strokeWidth="2"
             />
 
-            {/* ligne horizontale f nos */}
+            {/* ligne horizontale  */}
             <line
               x1={-circleR}
               y1="0"
@@ -277,7 +276,7 @@ function PertDiagram({ pertResult, displayUnit }) {
               strokeWidth="1"
             />
 
-            {/* ligne verticale ghir men nos l-taHt (b7al node 5 li ورّيتي) */}
+            {/* ligne verticale */}
             <line
               x1="0"
               y1="0"
@@ -287,7 +286,7 @@ function PertDiagram({ pertResult, displayUnit }) {
               strokeWidth="1"
             />
 
-            {/* numéro de l'événement foq */}
+            {/* numéro de l'événement  */}
             <text
               x="0"
               y={-10}
